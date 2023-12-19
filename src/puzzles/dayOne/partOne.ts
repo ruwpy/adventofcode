@@ -1,9 +1,5 @@
-import { parseInput } from "../../lib/utils.js";
-
-export const dayOnePartOne = async () => {
-  const data = await parseInput("src/puzzles/dayOne/input.txt");
-
-  const nums = data.map((str) => {
+export const dayOnePartOne = async (input: string[]) => {
+  const nums = input.map((str) => {
     let allNums = [];
 
     for (let i = 0; i < str.length; i++) {
@@ -18,8 +14,6 @@ export const dayOnePartOne = async () => {
   });
 
   const sum = nums.reduce((prev, cur) => prev + cur);
-
-  console.log(sum);
 
   return sum;
 };

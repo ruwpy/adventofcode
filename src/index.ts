@@ -1,14 +1,19 @@
 import inquirer from "inquirer";
-import { dayOnePartOne } from "./puzzles/dayOne/partOne.js";
+import { parseInput } from "./lib/utils.js";
+import { dayOnePartOne, dayOnePartTwo } from "./puzzles/index.js";
+
+const puzzles: TPuzzles = {
+  dayOne: {
+    partOne: dayOnePartOne,
+    partTwo: dayOnePartTwo,
+  },
+};
+
+const inputs: { [key in TPuzzleDays]?: string } = {
+  dayOne: "src/puzzles/dayOne/input.txt",
+};
 
 const main = async () => {
-  const puzzles: TPuzzles = {
-    dayOne: {
-      partOne: dayOnePartOne,
-      partTwo: () => {},
-    },
-  };
-
   const selectedDay: { [key: string]: TPuzzleDays } = await inquirer.prompt({
     type: "list",
     name: "puzzleDay",
@@ -17,7 +22,7 @@ const main = async () => {
   });
 
   if (selectedDay) {
-    const dayValue = Object.values(selectedDay)[0];
+    const dayValue = Object.values(selectedDay)[0] as TPuzzleDays;
 
     const puzzleParts = puzzles[dayValue];
 
@@ -33,7 +38,21 @@ const main = async () => {
 
       const puzzleFunc = puzzleParts[partValue];
 
-      if (puzzleFunc) await puzzleFunc();
+      if (puzzleFunc) {
+        const inputFileUrl = inputs[dayValue];
+
+        if (inputFileUrl) {
+          const input = await parseInput(inputFileUrl);
+
+          const result = await puzzleFunc(input);
+
+          console.log(" ");
+          console.log(`Result of this puzzle: ${result}`);
+          console.log(" ");
+
+          main();
+        }
+      }
     }
   }
 };

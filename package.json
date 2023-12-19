@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/index.js",
+    "test": "vitest --run"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,8 @@
     "inquirer": "^9.2.12"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.7",
     "@types/node": "^20.10.5",
-    "@types/inquirer": "^9.0.7"
+    "vitest": "^1.1.0"
   }
 }
