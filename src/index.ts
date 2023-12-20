@@ -1,17 +1,6 @@
 import inquirer from "inquirer";
 import { parseInput } from "./lib/utils.js";
-import { dayOnePartOne, dayOnePartTwo } from "./puzzles/index.js";
-
-const puzzles: TPuzzles = {
-  dayOne: {
-    partOne: dayOnePartOne,
-    partTwo: dayOnePartTwo,
-  },
-};
-
-const inputs: { [key in TPuzzleDays]?: string } = {
-  dayOne: "src/puzzles/dayOne/input.txt",
-};
+import { inputs, puzzles } from "./data.js";
 
 const main = async () => {
   const selectedDay: { [key: string]: TPuzzleDays } = await inquirer.prompt({

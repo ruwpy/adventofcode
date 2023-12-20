@@ -1,4 +1,4 @@
-export const dayOnePartOne = async (input: string[]) => {
+export const trebuchetPartOne = async (input: string[]) => {
   const nums = input.map((str) => {
     let allNums = [];
 
