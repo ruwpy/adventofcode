@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { gearRatiosPartOne } from "./partOne.js";
+import { gearRatiosPartOne } from "./p1.js";
 
 const input = [
   "467..114..",

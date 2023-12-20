@@ -3,40 +3,60 @@ import { parseInput } from "./lib/utils.js";
 import { puzzles } from "./data.js";
 
 const main = async () => {
+  const namesArray: string[] = [];
+
+  for (const puzzle in puzzles) {
+    const day = puzzle as TPuzzleDays;
+
+    const object = puzzles[day];
+    if (object) {
+      const name = object.name;
+
+      namesArray.push(name);
+    }
+  }
+
   const selectedDay: { [key: string]: TPuzzleDays } = await inquirer.prompt({
     type: "list",
     name: "puzzleDay",
     message: "Choose day:",
-    choices: [...Object.keys(puzzles)],
+    choices: [...namesArray],
   });
 
   if (selectedDay) {
-    const dayValue = Object.values(selectedDay)[0] as TPuzzleDays;
+    const dayValue = Object.values(selectedDay)[0] as string;
 
-    const puzzleParts = puzzles[dayValue];
+    let key: TPuzzleDays;
 
-    if (puzzleParts) {
-      const selectedPart: { [key: string]: TPuzzlesPartNames } = await inquirer.prompt({
-        type: "list",
-        name: "puzzlePart",
-        message: "Choose puzzle part:",
-        choices: [...Object.keys(puzzleParts)],
-      });
+    for (key in puzzles) {
+      if (puzzles.hasOwnProperty(key) && puzzles[key]?.name === dayValue) {
+        const puzzleParts = puzzles[key]?.solutions;
 
-      const partValue = Object.values(selectedPart)[0];
+        if (puzzleParts) {
+          const selectedPart: { [key: string]: TPuzzlesPartNames } =
+            await inquirer.prompt({
+              type: "list",
+              name: "puzzlePart",
+              message: "Choose puzzle part:",
+              choices: [...Object.keys(puzzleParts)],
+            });
 
-      const puzzleFunc = puzzleParts[partValue];
+          const partValue = Object.values(selectedPart)[0];
 
-      if (puzzleFunc) {
-        const input = await parseInput(`src/inputs/${dayValue}.txt`);
+          const puzzleFunc = puzzleParts[partValue];
 
-        const result = await puzzleFunc(input);
+          if (puzzleFunc) {
+            const input = await parseInput(`src/inputs/${key}.txt`);
 
-        console.log(" ");
-        console.log(`Result of this puzzle: ${result}`);
-        console.log(" ");
+            const result = await puzzleFunc(input);
 
-        main();
+            console.log(" ");
+            console.log(`Result of this puzzle: ${result}`);
+            console.log(" ");
+
+            main();
+          }
+        }
       }
     }
   }

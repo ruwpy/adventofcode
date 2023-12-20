@@ -1,4 +1,4 @@
-import { trebuchetPartOne } from "./partOne.js";
+import { trebuchetPartOne } from "./p1.js";
 
 export const trebuchetPartTwo = (input: string[]) => {
   const replacedNumbers = input.map((str) => {

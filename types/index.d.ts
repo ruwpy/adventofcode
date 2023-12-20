@@ -1,7 +1,10 @@
 type TPuzzles = {
   [key in TPuzzleDays]?: {
-    [key in TPuzzlesPartNames]?: (input: string[]) => any;
+    name: string;
+    solutions: {
+      [key in TPuzzlesPartNames]?: (input: string[]) => any;
+    };
   };
 };
-type TPuzzleDays = "dayOne" | "dayTwo" | "dayThree";
-type TPuzzlesPartNames = "partOne" | "partTwo";
+type TPuzzleDays = "01" | "02" | "03";
+type TPuzzlesPartNames = "p1" | "p2";
