@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { parseInput } from "./lib/utils.js";
-import { inputs, puzzles } from "./data.js";
+import { puzzles } from "./data.js";
 
 const main = async () => {
   const selectedDay: { [key: string]: TPuzzleDays } = await inquirer.prompt({
@@ -28,19 +28,15 @@ const main = async () => {
       const puzzleFunc = puzzleParts[partValue];
 
       if (puzzleFunc) {
-        const inputFileUrl = inputs[dayValue];
+        const input = await parseInput(`src/inputs/${dayValue}.txt`);
 
-        if (inputFileUrl) {
-          const input = await parseInput(inputFileUrl);
+        const result = await puzzleFunc(input);
 
-          const result = await puzzleFunc(input);
+        console.log(" ");
+        console.log(`Result of this puzzle: ${result}`);
+        console.log(" ");
 
-          console.log(" ");
-          console.log(`Result of this puzzle: ${result}`);
-          console.log(" ");
-
-          main();
-        }
+        main();
       }
     }
   }

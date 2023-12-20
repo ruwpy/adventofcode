@@ -20,8 +20,6 @@ const isGamePossible = (input: string) => {
     });
   });
 
-  console.log(cubes);
-
   const isPossible =
     possibleCubes.r >= cubes.red &&
     possibleCubes.g >= cubes.green &&

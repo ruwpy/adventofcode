@@ -1,6 +1,7 @@
 import {
   cubeConundurumPartOne,
   cubeConundurumPartTwo,
+  gearRatiosPartOne,
   trebuchetPartOne,
   trebuchetPartTwo,
 } from "./puzzles/index.js";
@@ -14,9 +15,7 @@ export const puzzles: TPuzzles = {
     partOne: cubeConundurumPartOne,
     partTwo: cubeConundurumPartTwo,
   },
-};
-
-export const inputs: { [key in TPuzzleDays]?: string } = {
-  dayOne: "src/puzzles/dayOne/input.txt",
-  dayTwo: "src/puzzles/dayTwo/input.txt",
+  dayThree: {
+    partOne: gearRatiosPartOne,
+  },
 };

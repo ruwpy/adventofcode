@@ -9,6 +9,6 @@ const input = [
   "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
 ];
 
-test("d2p1", () => {
+test("d2p2", () => {
   expect(cubeConundurumPartTwo(input)).toBe(2286);
 });

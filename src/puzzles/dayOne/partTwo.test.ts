@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { trebuchetPartTwo } from "./index.js";
+import { trebuchetPartTwo } from "./partTwo.js";
 
 const input = [
   "two1nine",
