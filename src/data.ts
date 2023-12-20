@@ -1,5 +1,6 @@
 import {
   cubeConundurumPartOne,
+  cubeConundurumPartTwo,
   trebuchetPartOne,
   trebuchetPartTwo,
 } from "./puzzles/index.js";
@@ -11,6 +12,7 @@ export const puzzles: TPuzzles = {
   },
   dayTwo: {
     partOne: cubeConundurumPartOne,
+    partTwo: cubeConundurumPartTwo,
   },
 };
 
